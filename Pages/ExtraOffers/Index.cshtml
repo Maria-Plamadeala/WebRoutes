@@ -1,11 +1,11 @@
-﻿@page 
-@model WebRoutes.Pages.Routes.IndexModel
+﻿@page
+@model WebRoutes.Pages.ExtraOffers.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Routes</h1>
+<h1>Extra Offer</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -14,31 +14,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Route[0].name)
+                @Html.DisplayNameFor(model => model.ExtraOffer[0].name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Route[0].description)
+                @Html.DisplayNameFor(model => model.ExtraOffer[0].description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Route[0].duration)
+                @Html.DisplayNameFor(model => model.ExtraOffer[0].price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Route[0].price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Route[0].Guide.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Route[0].RouteCategories)
+                @Html.DisplayNameFor(model => model.ExtraOffer[0].ExtraOfferCategories)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.RouteD.Routes)
+        @foreach (var item in Model.ExtraOfferD.ExtraOffers)
         {
             string selectedRow = "";
-            if (item.ID == Model.routeID)
+            if (item.ID == Model.extraofferID)
             {
                 selectedRow = "table-success";
             }
@@ -50,19 +44,13 @@
                 @Html.DisplayFor(modelItem => item.description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.duration)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Guide.name)
-            </td>
-            <td>
                 @{
-                    foreach (var category in item.RouteCategories)
+                    foreach (var category in item.ExtraOfferCategories)
                     {
-                         @: @category.Category.category_name <br />
+                         @: @category.ExtraCategory.extra_category_name<br />
                     }
                 }
             </td>

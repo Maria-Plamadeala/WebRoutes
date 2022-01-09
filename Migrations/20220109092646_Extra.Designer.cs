@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebRoutes.Data;
 
 namespace WebRoutes.Migrations
 {
     [DbContext(typeof(WebRoutesContext))]
-    partial class WebRoutesContextModelSnapshot : ModelSnapshot
+    [Migration("20220109092646_Extra")]
+    partial class Extra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +37,6 @@ namespace WebRoutes.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("WebRoutes.Models.ExtraCategory", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("extra_category_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ExtraCategory");
-                });
-
             modelBuilder.Entity("WebRoutes.Models.ExtraOffer", b =>
                 {
                     b.Property<int>("ID")
@@ -69,28 +56,6 @@ namespace WebRoutes.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("ExtraOffer");
-                });
-
-            modelBuilder.Entity("WebRoutes.Models.ExtraOfferCategory", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("extracategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("extraofferID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("extracategoryID");
-
-                    b.HasIndex("extraofferID");
-
-                    b.ToTable("ExtraOfferCategory");
                 });
 
             modelBuilder.Entity("WebRoutes.Models.Guide", b =>
@@ -167,25 +132,6 @@ namespace WebRoutes.Migrations
                     b.ToTable("RouteCategory");
                 });
 
-            modelBuilder.Entity("WebRoutes.Models.ExtraOfferCategory", b =>
-                {
-                    b.HasOne("WebRoutes.Models.ExtraCategory", "ExtraCategory")
-                        .WithMany("ExtraOfferCategories")
-                        .HasForeignKey("extracategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebRoutes.Models.ExtraOffer", "ExtraOffer")
-                        .WithMany("ExtraOfferCategories")
-                        .HasForeignKey("extraofferID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExtraCategory");
-
-                    b.Navigation("ExtraOffer");
-                });
-
             modelBuilder.Entity("WebRoutes.Models.Route", b =>
                 {
                     b.HasOne("WebRoutes.Models.Guide", "Guide")
@@ -219,16 +165,6 @@ namespace WebRoutes.Migrations
             modelBuilder.Entity("WebRoutes.Models.Category", b =>
                 {
                     b.Navigation("RouteCategories");
-                });
-
-            modelBuilder.Entity("WebRoutes.Models.ExtraCategory", b =>
-                {
-                    b.Navigation("ExtraOfferCategories");
-                });
-
-            modelBuilder.Entity("WebRoutes.Models.ExtraOffer", b =>
-                {
-                    b.Navigation("ExtraOfferCategories");
                 });
 
             modelBuilder.Entity("WebRoutes.Models.Guide", b =>

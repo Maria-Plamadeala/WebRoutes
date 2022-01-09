@@ -19,5 +19,9 @@ namespace WebRoutes.Data
         public DbSet<WebRoutes.Models.Guide> Guide { get; set; }
 
         public DbSet<WebRoutes.Models.Category> Category { get; set; }
+
+        public DbSet<WebRoutes.Models.ExtraOffer> ExtraOffer { get; set; }
+
+        public DbSet<WebRoutes.Models.ExtraCategory> ExtraCategory { get; set; }
     }
 }
